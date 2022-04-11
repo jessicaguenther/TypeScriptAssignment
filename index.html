@@ -6,11 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="./build/bundle.js"></script>
+    <link href="./src/drinkstyle.css" rel="stylesheet">
 </head>
 
+
+
 <body>
-    <my-beispiel></my-beispiel>
-    <input type="text" id="myInput" />
+    <div id="box">
+        <div class="headings">
+            <h1>FIND YOUR</h1>
+            <h2>COCKTAIL</h2>
+        </div>
+
+        <div class="radiocontainer">
+            <input type="radio" class="radioButton" name="auswahl"> COCKTAIL
+            <input type="radio" class="radioButton" name="auswahl"> INGREDIENTS
+        </div>
+
+        <input type="text" autofocus="on" id="myInput" /> <br>
+        <button id="searchButton">SEARCH</button>
+    </div>
+  
 </body>
 
 </html>

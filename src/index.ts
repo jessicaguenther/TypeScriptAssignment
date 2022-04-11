@@ -1,24 +1,19 @@
-//THIS IS THE ENTRY FILE - WRITE YOUR MAIN LOGIC HERE!
+const search = document.querySelector("#myInput") as HTMLInputElement;
+const searchButton = document.querySelector("#searchButton") as HTMLButtonElement;
+const cocktailName = search.value;
 
-import { helloWorld, Beispiel } from "./myModule";
-import { alertMe } from "./myOtherModule";
+searchButton.addEventListener("click", searchForCocktail)
 
-console.log(helloWorld);
-customElements.define("my-beispiel", Beispiel);
-
-alertMe();
-
-const myInputValue = document.querySelector<HTMLInputElement>("#myInput");
-
-const myInputValueAlternate = document.querySelector(
-  "#myInput"
-) as HTMLInputElement;
-
-document
-  .querySelector<HTMLInputElement>("#myInput")
-  ?.addEventListener("focus", doSmth);
-
-function doSmth(e: UIEvent) {
-  const val = e.target as HTMLInputElement;
-  console.log(e, val.value);
+function searchForCocktail () {
+  const cocktailName = search.value; 
+  fetch (`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
+  .then(res => res.json())
+  .then(data => (){
+    
+  })
 }
+
+
+
+
+
