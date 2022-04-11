@@ -2,6 +2,7 @@ const search = document.querySelector("#myInput") as HTMLInputElement;
 const searchButton = document.querySelector("#searchButton") as HTMLButtonElement;
 const cocktailName = search.value;
 const output = document.querySelector(".outputName") as HTMLParagraphElement;
+const outputInstructions = document.querySelector(".outputInstructions") as HTMLParagraphElement;
 const outputIngredients = document.querySelector(".ingredients") as HTMLUListElement;
 const background = document.querySelector(".background") as HTMLDivElement;
 
@@ -21,6 +22,8 @@ function searchForCocktail() {
           const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
           listItem.textContent = data.drinks[0]["strIngredient" + i]
         }
+      
+      outputInstructions.innerText = data.drinks[0].strInstructions  
       }
     })
 }
