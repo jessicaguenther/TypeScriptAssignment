@@ -140,4 +140,16 @@ border-radius: 15px;
 
 }
 
+.background {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
 
+.background li {
+    color: red;
+}
