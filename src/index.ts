@@ -14,11 +14,15 @@ exitButton.addEventListener("click", exitPage)
 function exitPage() {
   background.style.display = "none"
   search.value = ""
+  deleteList()
+}
+
+function deleteList(){
+  document.querySelectorAll(".ingredient").forEach(e => e.remove())
 }
 
 function searchForCocktail() {
   const cocktailName = search.value;
-
 
 
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
@@ -30,6 +34,7 @@ function searchForCocktail() {
       for (let i = 1; i < 15; i++) {
         if (data.drinks[0]["strIngredient" + i] != null) {
           const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
+          listItem.classList.add("ingredient")
           listItem.textContent = data.drinks[0]["strIngredient" + i] + ": " + data.drinks[0]["strMeasure" + i]
         if (data.drinks[0]["strMeasure" + i] == null) {
           listItem.textContent = data.drinks[0]["strIngredient" + i]
@@ -44,6 +49,7 @@ function searchForCocktail() {
       background.style.display = "none"
       message.style.display = "block"
       message.textContent = "SORRY! CANNOT FIND COCKTAIL"
+      search.value = ""
       
     })
     
