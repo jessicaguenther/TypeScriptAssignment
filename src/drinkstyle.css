@@ -137,6 +137,23 @@ input[type='radio']  {
 
     color: #FFFFFF;
 }
+#randomButton {
+    width: 209px;
+    height: 52px;
+
+    background: linear-gradient(93.54deg, rgba(137,28,189, 0.5), rgba(27,29,210, 0.5));
+    border-radius: 15px;
+    border-color: #020061;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
 
 button {
     height: 30px;

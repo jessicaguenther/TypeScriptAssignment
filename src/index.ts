@@ -15,10 +15,12 @@ const headingIngredients = document.querySelector(".headingIngredients") as HTML
 const headingInstructions = document.querySelector(".headingInstructions") as HTMLHeadingElement;
 const radioButtonCocktail = document.querySelector("#radioButtonCocktail") as HTMLInputElement;
 const radioButtonIngredients = document.querySelector("#radioButtonIngredients") as HTMLInputElement;
+const randomButton = document.querySelector("#randomButton") as HTMLButtonElement;
 
 let isCocktailSelected : boolean
 
 searchButton.addEventListener("click", searchLogic);
+randomButton.addEventListener("click", randomCocktail)
 exitButton.addEventListener("click", exitPage);
 
 function checkRadiobutton(){
@@ -151,4 +153,14 @@ function searchForIngredient() {
         })
       }
     })
+}
+
+function randomCocktail(){
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
+  .then (res => res.json())
+  .then (data => {
+    background.style.display = "flex";
+    headingCocktailList.style.display = "none";
+    clickOnCocktail(data.drinks[0].strDrink)
+  })
 }
