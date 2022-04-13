@@ -199,6 +199,7 @@ border-radius: 15px;
     right: 0;
     left: 0;
     bottom: 0;
+    
 }
 
 .boxInside {
@@ -216,11 +217,14 @@ border-radius: 15px;
 margin: auto;
 padding: 40px;
 
+
+
 }
 
 ul {
     margin-top: -10px;
-overflow: scroll;
+    max-height: 400px;
+    overflow: scroll;
 }
 
 
@@ -229,6 +233,7 @@ overflow: scroll;
     color: rgb(154, 82, 187);
     list-style: auto;
     text-align: left;
+    
     
 
 }

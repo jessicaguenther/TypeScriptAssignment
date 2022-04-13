@@ -8,27 +8,34 @@ const output = document.querySelector(".outputName") as HTMLParagraphElement;
 const outputInstructions = document.querySelector(".outputInstructions") as HTMLParagraphElement;
 const outputIngredients = document.querySelector(".ingredients") as HTMLUListElement;
 const background = document.querySelector(".background") as HTMLDivElement;
-const headings = document.querySelector(".headings") as HTMLDivElement;
 const message = document.querySelector(".errorMessage") as HTMLParagraphElement;
 const headingCocktailName = document.querySelector(".headingCocktailName") as HTMLHeadingElement;
 const headingCocktailList = document.querySelector(".headingCocktailList") as HTMLHeadingElement;
 const headingIngredients = document.querySelector(".headingIngredients") as HTMLHeadingElement;
-
 const headingInstructions = document.querySelector(".headingInstructions") as HTMLHeadingElement;
+const radioButtonCocktail = document.querySelector("#radioButtonCocktail") as HTMLInputElement;
+const radioButtonIngredients = document.querySelector("#radioButtonIngredients") as HTMLInputElement;
 
-let isCocktailSelected = true
+let isCocktailSelected : boolean
 
 searchButton.addEventListener("click", searchLogic);
 exitButton.addEventListener("click", exitPage);
 
 function checkRadiobutton(){
-  
+  if (radioButtonCocktail.checked){
+    isCocktailSelected = true
+    
+  }
+  else if (radioButtonIngredients.checked){
+    isCocktailSelected = false
+  }
 }
 
 function exitPage() {
   background.style.display = "none";
   search.value = "";
   deleteList();
+  headingCocktailName.style.display = "none";
 }
 
 function deleteList() {
@@ -38,6 +45,7 @@ function deleteList() {
 
 
 function searchLogic() {
+  checkRadiobutton();
   if (isCocktailSelected) {
     searchForCocktail();
   }
@@ -85,6 +93,11 @@ function clickOnCocktail(cocktailName:string) {
     .then(res => res.json())
     .then(data => {
       background.style.display = "flex";
+      headingCocktailName.style.display = "flex";
+      headingIngredients.style.display = "flex";
+      headingInstructions.style.display = "flex";
+      output.style.display = "flex";
+      headingCocktailList.style.display = "none";
       console.log(data);
       output.innerText = data.drinks[0].strDrink;
       for (let i = 1; i < 15; i++) {
@@ -121,8 +134,7 @@ function searchForIngredient() {
       headingCocktailName.style.display = "none";
       headingIngredients.style.display = "none";
       headingInstructions.style.display = "none";
-      const heading = headings.appendChild(document.createElement("h3")) as HTMLHeadingElement;
-      heading.textContent = "COCKTAILNAMES:"
+    
       for (let i = 0; i < data.drinks.length; i++) {
         output.innerText = data.drinks[i].strDrink;
         // console.log(data.drinks[i].strDrink)
