@@ -1,0 +1,16 @@
+export const search = document.querySelector("#myInput") as HTMLInputElement;
+export const searchButton = document.querySelector("#searchButton") as HTMLButtonElement;
+export const exitButton = document.querySelector("#exitButton") as HTMLButtonElement;
+export const cocktailName = search.value;
+export const output = document.querySelector(".outputName") as HTMLParagraphElement;
+export const outputInstructions = document.querySelector(".outputInstructions") as HTMLParagraphElement;
+export const outputIngredients = document.querySelector(".ingredients") as HTMLUListElement;
+export const background = document.querySelector(".background") as HTMLDivElement;
+export const message = document.querySelector(".errorMessage") as HTMLParagraphElement;
+export const headingCocktailName = document.querySelector(".headingCocktailName") as HTMLHeadingElement;
+export const headingCocktailList = document.querySelector(".headingCocktailList") as HTMLHeadingElement;
+export const headingIngredients = document.querySelector(".headingIngredients") as HTMLHeadingElement;
+export const headingInstructions = document.querySelector(".headingInstructions") as HTMLHeadingElement;
+export const radioButtonCocktail = document.querySelector("#radioButtonCocktail") as HTMLInputElement;
+export const radioButtonIngredients = document.querySelector("#radioButtonIngredients") as HTMLInputElement;
+export const randomButton = document.querySelector("#randomButton") as HTMLButtonElement;

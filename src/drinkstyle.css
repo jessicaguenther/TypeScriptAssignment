@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;800&display=swap');
 
 body {
     text-align: center;
@@ -17,7 +17,7 @@ body {
     text-align: center;
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 800;
+    font-weight: 500;
     font-size: 18px;
     line-height: 27px;
     
@@ -29,7 +29,7 @@ h1 {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: lighter;
+    font-weight: 300;
     font-size: 60px;
     line-height: 10px;
     text-align: center;
@@ -42,7 +42,7 @@ h2 {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 600;
     font-size: 90px;
     line-height: 20px;
     text-align: center;
@@ -81,7 +81,7 @@ p {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 800;
+    font-weight: 500;
     font-size: 25px;
     line-height: 34px;
     text-align: center;
@@ -111,7 +111,7 @@ input[type='radio']  {
     border-color: #891CBD;
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 15px;
     line-height: 15px;
     text-align: center;
@@ -130,7 +130,7 @@ input[type='radio']  {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 25px;
     line-height: 34px;
     text-align: center;
@@ -147,7 +147,7 @@ input[type='radio']  {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 300;
     font-size: 20px;
     line-height: 30px;
     text-align: center;
@@ -159,7 +159,7 @@ button {
     height: 30px;
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 300;
     font-size: 18px;
     line-height: 34px;
     text-align: center;
