@@ -100,6 +100,10 @@ margin-top: 20px;
 
 }
 
+/* .radioButtonCocktail:checked{
+    color: rgba(27,29,210, 0.5);
+} */
+
 .radiocontainer {
 
 display: flex;
@@ -190,10 +194,12 @@ border: 2px solid #52049b;
 border-radius: 15px;
 margin: auto;
 padding: 40px;
+
 }
 
 ul {
     margin-top: -10px;
+overflow: scroll;
 }
 
 
