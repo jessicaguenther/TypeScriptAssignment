@@ -6,6 +6,7 @@ const output = document.querySelector(".outputName") as HTMLParagraphElement;
 const outputInstructions = document.querySelector(".outputInstructions") as HTMLParagraphElement;
 const outputIngredients = document.querySelector(".ingredients") as HTMLUListElement;
 const background = document.querySelector(".background") as HTMLDivElement;
+const headings = document.querySelector(".headings") as HTMLDivElement;
 const message = document.querySelector(".errorMessage") as HTMLParagraphElement;
 
 let isCocktailSelected = false
@@ -99,11 +100,13 @@ function clickOnCocktail(cocktailName:string) {
 
 function searchForIngredient() {
   const cocktailName = search.value;
-
+  const heading = headings.appendChild(document.createElement("h3")) as HTMLHeadingElement;
+  heading.textContent = "COCKTAILNAMES:"
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailName}`)
     .then(res => res.json())
     .then(data => {
       background.style.display = "flex";
+     
       for (let i = 0; i < data.drinks.length; i++) {
         output.innerText = data.drinks[i].strDrink;
         // console.log(data.drinks[i].strDrink)
