@@ -22,7 +22,7 @@ function exitPage() {
   search.value = "";
   deleteList();
   headingCocktailName.style.display = "none";
-
+  document.location.reload()
 }
 
 function deleteList() {
@@ -46,17 +46,27 @@ function searchForCocktail() {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
       .then(res => res.json())
       .then(data => {
-        output.innerText = data.drinks[0].strDrink;
-        for (let i = 1; i < 15; i++) {
-          if (data.drinks[0]["strIngredient" + i] != null && data.drinks[0]["strIngredient" + i] != "" ) {
-            const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
-            listItem.classList.add("ingredient");
-            listItem.textContent = data.drinks[0]["strIngredient" + i] + ": " + data.drinks[0]["strMeasure" + i];
-            if (data.drinks[0]["strMeasure" + i] == null) {
-              listItem.textContent = data.drinks[0]["strIngredient" + i];
-            }
-          }
-          outputInstructions.innerText = data.drinks[0].strInstructions;
+        background.style.display = "flex";
+        output.style.display = "none";
+        headingCocktailName.style.display = "none";
+        headingIngredients.style.display = "none";
+        headingInstructions.style.display = "none";
+        outputInstructions.style.display = "none";
+        console.log(data);
+        for (let i = 0; i < data.drinks.length; i++) {
+          output.innerText = data.drinks[i].strDrink;
+         
+          const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
+          const linkItem = listItem.appendChild(document.createElement("button")) as HTMLButtonElement;
+          listItem.classList.add("cocktail");
+          outputInstructions.style.display = "flex";
+  
+          linkItem.textContent = data.drinks[i].strDrink
+          linkItem.addEventListener("click", function () {
+            deleteList()
+            clickOnCocktail(data.drinks[i].strDrink)
+            
+          })
         }
       })
       .catch(() => {
@@ -115,12 +125,11 @@ function searchForIngredient() {
 
       for (let i = 0; i < data.drinks.length; i++) {
         output.innerText = data.drinks[i].strDrink;
-        // console.log(data.drinks[i].strDrink)
+       
         const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
         const linkItem = listItem.appendChild(document.createElement("button")) as HTMLButtonElement;
         listItem.classList.add("cocktail");
         outputInstructions.style.display = "flex";
-        // listItem.textContent = data.drinks[i].strDrink;
 
         linkItem.textContent = data.drinks[i].strDrink
         linkItem.addEventListener("click", function () {
