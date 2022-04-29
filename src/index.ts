@@ -1,14 +1,16 @@
 
-import { searchButton, randomButton, exitButton, radioButtonCocktail, radioButtonIngredients, background, search, headingCocktailName, headingCocktailList, output, outputIngredients, outputInstructions, message, headingIngredients, headingInstructions } from "./variables";
+import { disableDarkBackground, displayContent, enableDarkBackground } from "./display";
+import { searchButton, randomButton, radioButtonCocktail, radioButtonIngredients, search, headingCocktailName, headingCocktailList, output, outputIngredients, outputInstructions, message, headingIngredients, headingInstructions, boxSelection, boxResult, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
 
 
-let isCocktailSelected: boolean
+let isCocktailSelected : boolean
 
 searchButton.addEventListener("click", searchLogic);
 randomButton.addEventListener("click", randomCocktail)
-exitButton.addEventListener("click", exitPage);
+exitButtonSelection.addEventListener("click", exitPage);
+exitButtonResult.addEventListener("click", exitPage);
 
-function checkRadiobutton() {
+function checkRadiobutton() : void {
   if (radioButtonCocktail.checked) {
     isCocktailSelected = true
   }
@@ -18,11 +20,13 @@ function checkRadiobutton() {
 }
 
 function exitPage() {
-  background.style.display = "none";
+  boxResult.style.display = "none";
+  boxSelection.style.display = "none";
   search.value = "";
   deleteList();
-  headingCocktailName.style.display = "none";
-  document.location.reload()
+  disableDarkBackground();
+  //headingCocktailName.style.display = "none";
+  //document.location.reload()
 }
 
 function deleteList() {
@@ -40,37 +44,36 @@ function searchLogic() {
   }
 }
 
+function createOutputList(data:any) {
+  for (let i = 0; i < data.drinks.length; i++) {
+    output.innerText = data.drinks[i].strDrink;
+   
+    const listItem = outputCocktailList.appendChild(document.createElement("li")) as HTMLLIElement;
+    const linkItem = listItem.appendChild(document.createElement("button")) as HTMLButtonElement;
+    listItem.classList.add("cocktail");
+    outputInstructions.style.display = "flex";
+
+    linkItem.textContent = data.drinks[i].strDrink
+    linkItem.addEventListener("click", function () {
+      deleteList()
+      clickOnCocktail(data.drinks[i].strDrink)
+      
+    })
+  }
+}
+
 function searchForCocktail() {
     const cocktailName = search.value;
+    
   
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
       .then(res => res.json())
       .then(data => {
-        background.style.display = "flex";
-        output.style.display = "none";
-        headingCocktailName.style.display = "none";
-        headingIngredients.style.display = "none";
-        headingInstructions.style.display = "none";
-        outputInstructions.style.display = "none";
-        console.log(data);
-        for (let i = 0; i < data.drinks.length; i++) {
-          output.innerText = data.drinks[i].strDrink;
-         
-          const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
-          const linkItem = listItem.appendChild(document.createElement("button")) as HTMLButtonElement;
-          listItem.classList.add("cocktail");
-          outputInstructions.style.display = "flex";
-  
-          linkItem.textContent = data.drinks[i].strDrink
-          linkItem.addEventListener("click", function () {
-            deleteList()
-            clickOnCocktail(data.drinks[i].strDrink)
-            
-          })
-        }
+        displayContent();
+        createOutputList(data);
+        enableDarkBackground();
       })
       .catch(() => {
-        background.style.display = "none";
         message.style.display = "block";
         message.textContent = "SORRY! CANNOT FIND COCKTAIL";
         search.value = "";
@@ -82,12 +85,9 @@ function clickOnCocktail(cocktailName: string) {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
     .then(res => res.json())
     .then(data => {
-      background.style.display = "flex";
-      headingCocktailName.style.display = "flex";
-      headingIngredients.style.display = "flex";
-      headingInstructions.style.display = "flex";
-      output.style.display = "flex";
-      headingCocktailList.style.display = "none";
+      boxResult.style.display = "flex";
+      boxSelection.style.display = "none";
+      enableDarkBackground();
       console.log(data);
       output.innerText = data.drinks[0].strDrink;
       for (let i = 1; i < 15; i++) {
@@ -103,7 +103,6 @@ function clickOnCocktail(cocktailName: string) {
       }
     })
     .catch(() => {
-      background.style.display = "none";
       message.style.display = "block";
       message.textContent = "SORRY! CANNOT FIND COCKTAIL";
       search.value = "";
@@ -116,31 +115,11 @@ function searchForIngredient() {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailName}`)
     .then(res => res.json())
     .then(data => {
-      background.style.display = "flex";
-      output.style.display = "none";
-      headingCocktailName.style.display = "none";
-      headingIngredients.style.display = "none";
-      headingInstructions.style.display = "none";
-      outputInstructions.style.display = "none";
-
-      for (let i = 0; i < data.drinks.length; i++) {
-        output.innerText = data.drinks[i].strDrink;
-       
-        const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
-        const linkItem = listItem.appendChild(document.createElement("button")) as HTMLButtonElement;
-        listItem.classList.add("cocktail");
-        outputInstructions.style.display = "flex";
-
-        linkItem.textContent = data.drinks[i].strDrink
-        linkItem.addEventListener("click", function () {
-          deleteList()
-          clickOnCocktail(data.drinks[i].strDrink)
-          
-        })
-      }
+      displayContent();
+      createOutputList(data);
+      enableDarkBackground();
     })
     .catch(() => {
-      background.style.display = "none";
       message.style.display = "block";
       message.textContent = "SORRY! CANNOT FIND INGREDIENT";
       search.value = "";
@@ -151,8 +130,8 @@ function randomCocktail() {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
     .then(res => res.json())
     .then(data => {
-      background.style.display = "flex";
-      headingCocktailList.style.display = "none";
+      boxResult.style.display = "flex";
+      enableDarkBackground();
       clickOnCocktail(data.drinks[0].strDrink)
     })
 }

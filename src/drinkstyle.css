@@ -102,7 +102,7 @@ input[type='radio']  {
     margin: 0 10px;
 }
 
-#exitButton {
+.exitButton {
     margin-left: 90%;
     width: 25px;
     height: 25px;
@@ -186,7 +186,7 @@ button {
     border-radius: 15px;
 }
 
-.background {
+.blackBackground {
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(9px);
     position: absolute;
@@ -195,15 +195,20 @@ button {
     right: 0;
     left: 0;
     bottom: 0;
+    z-index: 50;
 }
 
-.boxInside {
-    display: flex;
+.boxSelection,
+.boxResult {
+    display: none;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     padding: 4vh;
-
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(137,28,189, 0.2);
     backdrop-filter: blur(9px);
     box-shadow: 5px 10px 10px 2px rgba(0, 0, 0, 0.4);
@@ -211,6 +216,7 @@ button {
     border-radius: 15px;
     margin: auto;
     padding: 40px;
+    z-index: 100;
 }
 
 ul {
