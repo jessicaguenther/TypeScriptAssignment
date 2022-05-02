@@ -1,35 +1,18 @@
 
-import { disableDarkBackground, displayContent, enableDarkBackground } from "./display";
+import { checkRadiobutton, exitPage, isCocktailSelected, randomCocktail } from "./buttons";
+import { disableDarkBackground, displayContent, displayResult, enableDarkBackground, errorStyle } from "./display";
+import { searchForCocktail, searchForIngredient } from "./search";
 import { searchButton, randomButton, radioButtonCocktail, radioButtonIngredients, search, headingCocktailName, headingCocktailList, output, outputIngredients, outputInstructions, message, headingIngredients, headingInstructions, boxSelection, boxResult, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
-
-
-let isCocktailSelected : boolean
 
 searchButton.addEventListener("click", searchLogic);
 randomButton.addEventListener("click", randomCocktail)
 exitButtonSelection.addEventListener("click", exitPage);
 exitButtonResult.addEventListener("click", exitPage);
 
-function checkRadiobutton() : void {
-  if (radioButtonCocktail.checked) {
-    isCocktailSelected = true
-  }
-  else if (radioButtonIngredients.checked) {
-    isCocktailSelected = false
-  }
-}
 
-function exitPage() {
-  boxResult.style.display = "none";
-  boxSelection.style.display = "none";
-  search.value = "";
-  deleteList();
-  disableDarkBackground();
-  //headingCocktailName.style.display = "none";
-  //document.location.reload()
-}
 
-function deleteList() {
+
+export function deleteList() {
   document.querySelectorAll(".ingredient").forEach(e => e.remove());
   document.querySelectorAll(".cocktail").forEach(e => e.remove());
 }
@@ -44,7 +27,7 @@ function searchLogic() {
   }
 }
 
-function createOutputList(data:any) {
+export function createOutputList(data:any) {
   for (let i = 0; i < data.drinks.length; i++) {
     output.innerText = data.drinks[i].strDrink;
    
@@ -62,33 +45,14 @@ function createOutputList(data:any) {
   }
 }
 
-function searchForCocktail() {
-    const cocktailName = search.value;
-    
-  
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
-      .then(res => res.json())
-      .then(data => {
-        displayContent();
-        createOutputList(data);
-        enableDarkBackground();
-      })
-      .catch(() => {
-        message.style.display = "block";
-        message.textContent = "SORRY! CANNOT FIND COCKTAIL";
-        search.value = "";
-      })
-  }
 
-function clickOnCocktail(cocktailName: string) {
-  console.log(cocktailName)
+
+export function clickOnCocktail(cocktailName: string) {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
     .then(res => res.json())
     .then(data => {
-      boxResult.style.display = "flex";
-      boxSelection.style.display = "none";
+      displayResult();
       enableDarkBackground();
-      console.log(data);
       output.innerText = data.drinks[0].strDrink;
       for (let i = 1; i < 15; i++) {
         if (data.drinks[0]["strIngredient" + i] != null) {
@@ -109,29 +73,5 @@ function clickOnCocktail(cocktailName: string) {
     })
 }
 
-function searchForIngredient() {
-  const cocktailName = search.value;
 
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailName}`)
-    .then(res => res.json())
-    .then(data => {
-      displayContent();
-      createOutputList(data);
-      enableDarkBackground();
-    })
-    .catch(() => {
-      message.style.display = "block";
-      message.textContent = "SORRY! CANNOT FIND INGREDIENT";
-      search.value = "";
-    })
-}
 
-function randomCocktail() {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
-    .then(res => res.json())
-    .then(data => {
-      boxResult.style.display = "flex";
-      enableDarkBackground();
-      clickOnCocktail(data.drinks[0].strDrink)
-    })
-}

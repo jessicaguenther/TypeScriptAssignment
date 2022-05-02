@@ -55,7 +55,7 @@ h3 {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 800;
     font-size: 35px;
     line-height: 10px;
     text-align: center;
@@ -102,7 +102,8 @@ input[type='radio']  {
     margin: 0 10px;
 }
 
-.exitButton {
+.exitButtonSelection,
+.exitButtonResult {
     margin-left: 90%;
     width: 25px;
     height: 25px;
@@ -225,10 +226,12 @@ ul {
     overflow: scroll;
 }
 
-.background li {
+.boxResult li,
+.boxSelection li {
     color: rgb(154, 82, 187);
     list-style: auto;
     text-align: left;
+    font-weight: 500;
 }
 
 .errorMessage {
