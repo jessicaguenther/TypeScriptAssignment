@@ -57,7 +57,7 @@ h3 {
     font-style: normal;
     font-weight: 800;
     font-size: 35px;
-    line-height: 10px;
+    line-height: 30px;
     text-align: center;
 
     color: #FFFFFF;
@@ -234,6 +234,11 @@ ul {
     font-weight: 500;
 }
 
+.outputInstructions  {
+    display:flex;
+    max-height: 200px;
+    overflow: scroll;
+}
 .errorMessage {
     display: none;
     background-color: rgba(137,28,189, 0.4);

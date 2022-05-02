@@ -1,6 +1,7 @@
 import { disableDarkBackground, enableDarkBackground } from "./display";
-import { clickOnCocktail, deleteList } from "./index";
-import { boxResult, boxSelection, radioButtonCocktail, radioButtonIngredients, search } from "./variables";
+import { deleteList } from "./index";
+import { clickOnCocktail } from "./search";
+import { boxResult, boxSelection, message, radioButtonCocktail, radioButtonIngredients, search } from "./variables";
 
 export let isCocktailSelected: boolean
 
@@ -29,4 +30,5 @@ export function exitPage() {
     search.value = "";
     deleteList();
     disableDarkBackground();
+    message.style.display = "none";
 }
