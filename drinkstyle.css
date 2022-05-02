@@ -148,8 +148,8 @@ input[type='radio']  {
 
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 25px;
     line-height: 30px;
     text-align: center;
 
@@ -236,9 +236,10 @@ ul {
 
 .outputInstructions  {
     display:flex;
-    max-height: 200px;
+    max-height: 70px;
     overflow: scroll;
 }
+
 .errorMessage {
     display: none;
     background-color: rgba(137,28,189, 0.4);
