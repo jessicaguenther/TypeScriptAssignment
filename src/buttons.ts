@@ -14,6 +14,7 @@ export function checkRadiobutton(): void {
     }
 }
 
+//Gibt einen zufällig ausgewählten Cocktail aus
 export function randomCocktail() {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
         .then(res => res.json())
@@ -24,6 +25,11 @@ export function randomCocktail() {
         })
 }
 
+//Funktion für Exitbutton
+//Suchfeld wird geleert
+//Funktion deleteList() wird ausgeführt
+//Transparenter schwarzer Hintergund wird ausgeblendet
+//Messagefeld wird ausgeblendet
 export function exitPage() {
     boxResult.style.display = "none";
     boxSelection.style.display = "none";
