@@ -1,7 +1,7 @@
 import { checkRadiobutton, exitPage, isCocktailSelected, randomCocktail } from "./buttons";
 import { disableDarkBackground, displayContent, displayResult, enableDarkBackground, errorStyle } from "./display";
 import { clickOnCocktail, searchForCocktail, searchForIngredient } from "./search";
-import { searchButton, randomButton, radioButtonCocktail, radioButtonIngredients, search, headingCocktailName, headingCocktailList, output, outputIngredients, outputInstructions, message, headingIngredients, headingInstructions, boxSelection, boxResult, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
+import { searchButton, randomButton, radioButtonCocktail, radioButtonIngredients, search, output, outputIngredients, outputInstructions, message, boxSelection, boxResult, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
 
 searchButton.addEventListener("click", searchLogic);
 randomButton.addEventListener("click", randomCocktail)

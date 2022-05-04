@@ -1,4 +1,4 @@
-import { background, output, headingCocktailName, headingIngredients, headingInstructions, outputInstructions, boxResult, boxSelection, blackBackground, search, message } from "./variables";
+import { output, outputInstructions, boxResult, boxSelection, blackBackground, search, message } from "./variables";
 
 //Einblenden der Auswahlseite (Cocktail Selection)
 //Ausblenden der Ergebnisseite (Cocktailname, Ingredients, Instructions)
