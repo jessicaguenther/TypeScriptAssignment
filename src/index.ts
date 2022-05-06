@@ -8,6 +8,13 @@ randomButton.addEventListener("click", randomCocktail)
 exitButtonSelection.addEventListener("click", exitPage);
 exitButtonResult.addEventListener("click", exitPage);
 
+//Searchbutton durch "Enter" drücken ausführen
+document.addEventListener("keydown", (event) => {
+  if(event.key === "Enter") {
+    searchLogic()
+  }
+})
+
 //Löschen der Ergebnisse der vorigen Suche
 export function deleteList() {
   document.querySelectorAll(".ingredient").forEach(e => e.remove());
