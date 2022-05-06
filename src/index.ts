@@ -1,7 +1,7 @@
 import { checkRadiobutton, exitPage, isCocktailSelected, randomCocktail } from "./buttons";
-import { disableDarkBackground, displayContent, displayResult, enableDarkBackground, errorStyle } from "./display";
-import { clickOnCocktail, searchForCocktail, searchForIngredient } from "./search";
-import { searchButton, randomButton, radioButtonCocktail, radioButtonIngredients, search, output, outputIngredients, outputInstructions, message, boxSelection, boxResult, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
+import { displayResult, enableDarkBackground } from "./display";
+import { searchForCocktail, searchForIngredient } from "./search";
+import { searchButton, randomButton, search, output, outputIngredients, outputInstructions, message, exitButtonResult, exitButtonSelection, outputCocktailList } from "./variables";
 
 searchButton.addEventListener("click", searchLogic);
 randomButton.addEventListener("click", randomCocktail)
@@ -45,6 +45,32 @@ export function createOutputList(data: any) {
   }
 }
 
+export function clickOnCocktail(cocktailName: string) {
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`)
+      .then(res => res.json())
+      .then(data => {
+          displayResult();
+          enableDarkBackground();
+          console.log(cocktailName, outputIngredients);
+          output.innerText = data.drinks[0].strDrink;
+          for (let i = 1; i < 15; i++) {
+              if (data.drinks[0]["strIngredient" + i] != null) {
+                  const listItem = outputIngredients.appendChild(document.createElement("li")) as HTMLLIElement;
+                  listItem.classList.add("ingredient");
+                  listItem.textContent = data.drinks[0]["strIngredient" + i] + ": " + data.drinks[0]["strMeasure" + i];
+                  if (data.drinks[0]["strMeasure" + i] == null) {
+                      listItem.textContent = data.drinks[0]["strIngredient" + i];
+                  }
+              }
+              outputInstructions.innerText = data.drinks[0].strInstructions;
+          }
+      })
+      .catch(() => {
+          message.style.display = "block";
+          message.textContent = "SORRY! CANNOT FIND COCKTAIL";
+          search.value = "";
+      })
+}
 
 
 
