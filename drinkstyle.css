@@ -109,6 +109,11 @@ p {
     color: #FFFFFF;
 }
 
+#searchButton:hover {
+    cursor: pointer;
+    background: linear-gradient(93.54deg, rgba(102, 104, 212, 0.5), rgba(153, 87, 184, 0.5));
+}
+
 #randomButton {
     width: 209px;
     height: 52px;
@@ -125,6 +130,12 @@ p {
     text-align: center;
 
     color: #FFFFFF;
+    
+}
+
+#randomButton:hover{
+    cursor: pointer;
+    background: linear-gradient(93.54deg, rgba(153, 87, 184, 0.5), rgba(102, 104, 212, 0.5));
 }
 
 #box {
