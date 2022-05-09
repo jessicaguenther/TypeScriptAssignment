@@ -1,5 +1,5 @@
 import { disableDarkBackground, enableDarkBackground } from "./display";
-import { deleteList, clickOnCocktail } from "./index";
+import { deleteList, clickOnCocktail} from "./index";
 import { boxResult, boxSelection, message, radioButtonCocktail, radioButtonIngredients, search } from "./variables";
 
 export let isCocktailSelected: boolean
