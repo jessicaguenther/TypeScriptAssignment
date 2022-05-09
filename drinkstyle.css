@@ -162,6 +162,10 @@ input[type='radio']  {
     margin: 0 10px;
 }
 
+input[type='radio']:hover  {
+    cursor: pointer;
+}
+
 .exitButtonSelection,
 .exitButtonResult {
     margin-left: 90%;
