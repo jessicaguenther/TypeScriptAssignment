@@ -58,7 +58,6 @@ export function clickOnCocktail(cocktailName: string) {
       .then(data => {
           displayResult();
           enableDarkBackground();
-          console.log(cocktailName, outputIngredients);
           output.innerText = data.drinks[0].strDrink;
           for (let i = 1; i < 15; i++) {
               if (data.drinks[0]["strIngredient" + i] != null) {
